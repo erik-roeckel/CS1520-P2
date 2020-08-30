@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %} Owner {% endblock %}
+
+{% block body %}
+    <h1>Owner Profile</h1>
+    <div class = format> 
+        <a class = "btn btn-primary" href="{{ url_for('add_staff') }}"><strong>Create New Staff Account</strong></a>
+    </div>
+        {% if events %}
+            <div class= eventList>
+                <h2>Your Scheduled Catering Events</h2>
+                {% for event in events %}
+                        <li>
+                            <h3>Event</h3>
+                            {{event}}
+                            <p><strong>Staff Signed Up For this Event:</strong></p>
+                            {% if not event.staffOne and not event.staffTwo and not event.staffThree %}
+                                <p class = noStaff><strong>You have no staff signed up for this event!</strong></p>
+                            {% else %}
+                                {% if event.staffOne %}
+                                    <p>{{event.staffOne}}</p>
+                                {% endif %}
+                                {% if event.staffTwo %}
+                                    <p>{{event.staffTwo}}</p>
+                                {% endif %}
+                                {% if event.staffThree %}
+                                    <p>{{event.staffThree}}</p>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    <br></br>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class = eventList>
+                <h2>Your Scheduled Catering Events</h2>
+                <p class =noStaff><strong>There are no catering events scheduled, get to work!</strong></p>
+            </div>
+        {% endif %}
+{% endblock %}

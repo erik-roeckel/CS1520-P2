@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Staff Profile{% endblock %}
+
+{% block body %} 
+
+<h1> {{username}}'s Staff Profile</h1>
+    {% if events %}
+        <div class = eventList>
+            <h2> Events you are scheduled to work: </h2>
+            {% for event in events %}
+                {% if event.staffOne == username or event.staffTwo == username or event.staffThree == username %}
+                <li> 
+                    <h3>Event</h3> 
+                    {{event}}
+                    <p class = signedUp>You are signed up for this event!</p>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br></br>
+        <div class = eventList>
+            <h2> Events you can sign up to work: </h2>
+            {% for event in events %}
+                {% if not event.staffOne == username and not event.staffTwo == username and not event.staffThree == username %}
+                    {% if not event.staffOne or not event.staffTwo or not event.staffThree %}
+                        <li> 
+                            <h3>Event</h3> 
+                            {{event}}
+                            <p>You can sign up for this event!</p>
+                            <strong><a href="{{ url_for('event_signup', username = g.user.username, event = event, eventID = event.event_id) }}"> Sign up for this event</a></strong>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class = eventList>
+            <h2> Events you can sign up to work: </h2>
+            <p class = noStaff> There are no events available to sign up for!</p>
+        </div>
+    {% endif %}
+
+{% endblock %}

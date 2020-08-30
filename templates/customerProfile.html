@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Your profile!{% endblock %}
+
+{% block body %} 
+<h1>{{g.user.username}} 's Profile</h1>
+    <div class = "eventList">
+        <h2>Schedule New Event</h2>
+        <form action="" method="POST">
+            <dl>
+            <dt><strong>Event Description:</strong>
+            <dd><input type="text" name="description">
+            <dt><strong>Date of Event:</strong>
+            <dd><input type="date" name="date">
+            <dd><input type="submit" value="Schedule Event">
+            </dl>
+        </form>
+    </div>
+    <br></br>
+    <div class = "eventList">
+        <h2>Already Scheduled Events</h2>
+        {% if events %}
+            {% for event in events %}
+                <li>
+                    <h3>Event</h3>
+                    {{event}}
+                    <br></br>
+                    <strong><a href ="{{ url_for('delete_event', event = event, eventId = event.event_id)}}">Cancel This Event</a></strong>
+                </li>
+                <br></br>
+            {% endfor %}
+        {% else %}
+                <p class =noStaff>You currently have no events scheduled!</p>
+                <br></br>
+        {% endif %}
+    </div>
+{% endblock %}

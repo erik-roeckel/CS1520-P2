@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Remove Event{% endblock %}
+
+{% block body %} 
+<h1>Eriks Catering Co.</h1>
+    <h2>Delete Previously Scheduled Event</h2>
+    <div class = formFormat>
+        <h3>Event</h3>
+        <p>{{event}}</p>
+        <form action="" method="POST">
+            <dl>
+            <dd><input type="submit" value="Delete Event">
+            </dl>
+            <strong><a href="{{ url_for('customer_profile', username = g.user.username) }}"> Go Back To Profile</strong>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Event Sign Up{% endblock %}
+
+{% block body %} 
+<h1>Eriks Catering Co.</h1>
+    <div class = "formFormat">
+        <h2>Sign Up to Work this Event</h2>
+        <p>{{event}}</p>
+        <form action="" method="POST">
+            <dl>
+            <dd><input type="submit" value="Sign Up For Event">
+            </dl>
+            <strong><a href="{{ url_for('staff_profile', username = g.user.username) }}"> Go Back To Profile</strong>
+        </form>
+    </div>
+{% endblock %}
